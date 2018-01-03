@@ -57,9 +57,20 @@ Configuration StudentMachine {
     }
     Package noSkype {
         Name = "skype"
-        Path = 'C:\LanSchool Files\CS\Common\Git-2.14.1-64-bit.exe'
+        Path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe' # Doesn't actually matter since we're uninstalling. exe file I know will exist
         ProductId = "3B7E914A-93D5-4A29-92BB-AF8C3F66C431"
         Ensure = "Absent"
+    }
+    Package reallyNoSkype {
+        Name = "Skype™ 7.3"
+        Path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe' # Doesn't actually matter since we're uninstalling. exe file I know will exist
+        ProductId = ""
+        Ensure = "Absent"
+    }
+    Package rider {
+        Name = "Jetbrains Rider 2017.3"
+        ProductId = "" # Required to exist, but not to have a value.
+        Path = "\\HS024715\Users\urner\Documents\Shared\rider-installer.exe"
     }
     get-content "desktop-remove.txt" | foreach {
         File ('removeFromDesktop' + $_) {
@@ -98,7 +109,7 @@ Configuration StudentMachine {
         WorkingDirectory = "C:\Program Files (x86)\Google\Chrome\Application"
     }
     File csaIcon {
-        DestinationPath = "C:\LabFiles\CSAIcon.ico"
+        DestinationPath = "C:\LabFiles\CSAicon.ico"
         SourcePath = "\\HS024715\Users\urner\Documents\Shared\AP_CSA_icon.ico"
     }
     File theme {
