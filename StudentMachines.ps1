@@ -2,8 +2,6 @@
 $intelliJVersion = '2017.2.5'
 #####################
 
-cd "C:\Users\urner\Google Drive\SK\Config\"
-
 [DSCLocalConfigurationManager()]
 configuration StudentMachineMeta
 {
@@ -47,6 +45,11 @@ Configuration StudentMachine {
         AutoUpgrade = $True
         DependsOn = "[cChocoInstaller]installChoco"
     }
+    cChocoPackageInstaller android-sdk {
+    	Name = "android-sdk"
+	    AutoUpgrade = $True
+	    DependsOn = "[cChocoInstaller]installChoco"
+	}
     cChocoPackageInstaller git {
         Name = "git"
         AutoUpgrade = $True
@@ -58,13 +61,13 @@ Configuration StudentMachine {
         ProductId = "3B7E914A-93D5-4A29-92BB-AF8C3F66C431"
         Ensure = "Absent"
     }
-    get-content "~\Google Drive\SK\Config\desktop-remove.txt" | foreach {
+    get-content "desktop-remove.txt" | foreach {
         File ('removeFromDesktop' + $_) {
             DestinationPath = 'C:\Users\Public\Desktop\' + $_
             Ensure = 'Absent'
         }
     }
-    get-content "~\Google Drive\SK\Config\removefromlanschoolfiles.txt" | foreach {
+    get-content "removefromlanschoolfiles.txt" | foreach {
         File ('removeFromLSF' + $_) {
             DestinationPath = 'C:\LanSchool Files\' + $_
             Ensure = 'Absent'
@@ -115,7 +118,7 @@ Configuration StudentMachine {
   }
 }
 
-$Hosts = Get-Content "C:\Users\urner\Google Drive\SK\Config\hostnames.txt" | FOREACH {
+$Hosts = Get-Content ".\hostnames.txt" | FOREACH {
     $_ + '.skitsap.wednet.edu'
 }
 
@@ -123,4 +126,4 @@ $Hosts = Get-Content "C:\Users\urner\Google Drive\SK\Config\hostnames.txt" | FOR
 StudentMachine –nodename $Hosts
 
 #Set-DscLocalConfigurationManager -Path .\StudentMachineMeta
-Start-DscConfiguration -Path .\StudentMachine -Wait -Force -Verbose
+Start-DscConfiguration -Path .\StudentMachine -Wait -Force
