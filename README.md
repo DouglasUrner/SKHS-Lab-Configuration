@@ -2,3 +2,5 @@
 PowerShell DSC scripts to manage CS/Game Development lab configuration (Windows).
 
 Most packages come from [Chocolatey](https://chocolatey.org)
+
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
