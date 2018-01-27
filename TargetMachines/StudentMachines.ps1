@@ -1,5 +1,5 @@
 ﻿### CONFIGURATION ###
-$configDir = 'U:\src\SKHS-Lab-Configuration'
+$configDir = 'U:\src\SKHS-Lab-Configuration\TargetMachines'
 $intelliJVersion = '2017.3.2'
 #####################
 
@@ -8,7 +8,7 @@ $cred = Get-Credential
 [DSCLocalConfigurationManager()]
 configuration StudentMachineMeta
 {
-    Node $nodename
+    node $nodename
     {
         Settings
         {
@@ -153,4 +153,4 @@ $cd = @{
 StudentMachine –nodename $Hosts -ConfigurationData $cd
 
 #Set-DscLocalConfigurationManager -Path $configDir\StudentMachineMeta
-Start-DscConfiguration -Path "$configDir\StudentMachine" -Wait -Force -ComputerName 'HS022371.skitsap.wednet.edu' 
+Start-DscConfiguration -Path "$configDir\StudentMachine" -Wait -Force -ComputerName 'HS022369.skitsap.wednet.edu' 
