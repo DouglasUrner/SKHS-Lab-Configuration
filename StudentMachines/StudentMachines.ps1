@@ -1,6 +1,9 @@
 ﻿### CONFIGURATION ###
-$intelliJVersion = '2017.2.5'
+$configDir = 'U:\src\SKHS-Lab-Configuration'
+$intelliJVersion = '2017.3.2'
 #####################
+
+$cred = Get-Credential
 
 [DSCLocalConfigurationManager()]
 configuration StudentMachineMeta
@@ -70,15 +73,16 @@ Configuration StudentMachine {
     Package rider {
         Name = "Jetbrains Rider 2017.3"
         ProductId = "" # Required to exist, but not to have a value.
-        Path = "\\HS024715\Users\urner\Documents\Shared\rider-installer.exe"
+        Path = "\\Skhs04\instruction\Urner_Douglas\Urner_Douglas-Common\rider-installer.exe"
+        PsDscRunAsCredential = $cred
     }
-    get-content "desktop-remove.txt" | foreach {
+    get-content "$configDir\desktop-remove.txt" | foreach {
         File ('removeFromDesktop' + $_) {
             DestinationPath = 'C:\Users\Public\Desktop\' + $_
             Ensure = 'Absent'
         }
     }
-    get-content "removefromlanschoolfiles.txt" | foreach {
+    get-content "$configDir\removefromlanschoolfiles.txt" | foreach {
         File ('removeFromLSF' + $_) {
             DestinationPath = 'C:\LanSchool Files\' + $_
             Ensure = 'Absent'
@@ -110,15 +114,18 @@ Configuration StudentMachine {
     }
     File csaIcon {
         DestinationPath = "C:\LabFiles\CSAicon.ico"
-        SourcePath = "\\HS024715\Users\urner\Documents\Shared\AP_CSA_icon.ico"
+        SourcePath = "\\Skhs04\instruction\Urner_Douglas\Urner_Douglas-Common\AP_CSA_icon.ico"
+        PsDscRunAsCredential = $cred
     }
     File theme {
         DestinationPath = "C:\LabFiles\Lab.theme"
-        SourcePath = "\\HS024715\Users\urner\Documents\Shared\Lab.theme"
+        SourcePath = "\\Skhs04\instruction\Urner_Douglas\Urner_Douglas-Common\Lab.theme"
+        PsDscRunAsCredential = $cred
     }
     File themeImg {
         DestinationPath = "C:\LabFiles\pattern.png"
-        SourcePath = "\\HS024715\Users\urner\Documents\Shared\pattern.png"
+        SourcePath = "\\Skhs04\instruction\Urner_Douglas\Urner_Douglas-Common\pattern.png"
+        PsDscRunAsCredential = $cred
     }
     Registry defualtTheme {
         Key = "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes"
@@ -129,12 +136,21 @@ Configuration StudentMachine {
   }
 }
 
-$Hosts = Get-Content ".\hostnames.txt" | FOREACH {
+$Hosts = Get-Content "$configDir\hostnames.txt" | FOREACH {
     $_ + '.skitsap.wednet.edu'
 }
 
-#StudentMachineMeta -nodename $Hosts
-StudentMachine –nodename $Hosts
+$cd = @{
+    AllNodes = Get-Content "$configDir\hostnames.txt" | FOREACH {
+        @{
+            NodeName = $_ + '.skitsap.wednet.edu'
+            PSDscAllowPlainTextPassword = $true
+        }
+    }
+}
 
-#Set-DscLocalConfigurationManager -Path .\StudentMachineMeta
-Start-DscConfiguration -Path .\StudentMachine -Wait -Force
+#StudentMachineMeta -nodename $Hosts
+StudentMachine –nodename $Hosts -ConfigurationData $cd
+
+#Set-DscLocalConfigurationManager -Path $configDir\StudentMachineMeta
+Start-DscConfiguration -Path "$configDir\StudentMachine" -Wait -Force -ComputerName 'HS022371.skitsap.wednet.edu' 
