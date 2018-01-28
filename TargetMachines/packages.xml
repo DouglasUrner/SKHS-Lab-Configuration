@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packages>
+    <package id="blender" />
+    <package id="git" />
+    <package id="intellijidea-ultimate" />
+    <package id="jdk8" />
+    <package id="jetbrains-rider" />
+    <package id="unity" />
+
+    <package id="alloptions" version="0.1.1"
+             source="https://somewhere/api/v2/" installArguments=""
+             packageParameters="" forceX86="false" allowMultipleVersions="false"
+             ignoreDependencies="false"
+    />
+</packages>
+    
