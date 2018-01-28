@@ -7,10 +7,10 @@
     <package id="jetbrains-rider" />
     <package id="unity" />
 
-    <package id="alloptions" version="0.1.1"
+    <!--package id="alloptions" version="0.1.1"
              source="https://somewhere/api/v2/" installArguments=""
              packageParameters="" forceX86="false" allowMultipleVersions="false"
              ignoreDependencies="false"
-    />
+    -->
 </packages>
     
