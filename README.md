@@ -40,8 +40,8 @@ Most packages come from [Chocolatey](https://chocolatey.org)
 To install a license key:
 
 ```
-"C:\Program Piles\Unity\Editor\Unity.exe" -quit -batchmode -nographics \
-    -serial <key> -username "<username>" -password "<password>"
+"C:\Program Files\Unity\Editor\Unity.exe" -quit -batchmode -nographics \
+    -serial "<serial>" -username "<username>" -password "<password>"
 ```
 To return a license key:
   
