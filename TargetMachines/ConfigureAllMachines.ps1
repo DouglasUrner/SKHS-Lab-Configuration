@@ -10,4 +10,4 @@ cp U:\Source\SKHS-Lab-Configuration\TargetMachines\packages.config C:\"Lab Files
 echo "Copied packages.config."
 
 # Run the script
-invoke-command -Session $Sessions -FilePath .\TargetScript.ps1 | foreach { echo ($_.PSComputerName+': '+$_) }
+invoke-command -Session $Sessions -FilePath U:\Source\SKHS-Lab-Configuration\TargetMachines\TargetScript.ps1 | foreach { echo ($_.PSComputerName+': '+$_) }
