@@ -11,12 +11,13 @@ Most packages come from [Chocolatey](https://chocolatey.org)
 
 ## After Reimaging
 
-1. Enable PowerShell script execution
+1. Update PowerShell - this may not be necessary, but one way that you know that you need to update is if you are seeing out of memory and/or stack overflow errors when running the configuration script.
+1. Enable PowerShell script execution if necessary.
 1. Enable PowerShell remote execution
 
    ```Enable-PSRemoting```
    
-   or using the LANSchool ```Administer > Run Program on Student Machine``` option
+   or using the LANSchool ```Administer > Run Program on Student Machine``` option:
    
    ```powershell -Command "&{Enable-PSRemoting -force}"```
    
