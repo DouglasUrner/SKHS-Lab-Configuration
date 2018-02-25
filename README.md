@@ -11,6 +11,7 @@ Most packages come from [Chocolatey](https://chocolatey.org)
 
 ## After Reimaging
 
+1. Log in to all of the student machines as a user with administrative rights. With LANSchool this is '''Administer > Log on Selected Students...```
 1. Update PowerShell - this may not be necessary, but one way that you know that you need to update is if you are seeing out of memory and/or stack overflow errors when running the configuration script.
 1. Enable PowerShell script execution if necessary.
 1. Enable PowerShell remote execution
@@ -20,8 +21,6 @@ Most packages come from [Chocolatey](https://chocolatey.org)
    or using the LANSchool ```Administer > Run Program on Student Machine``` option:
    
    ```powershell -Command "&{Enable-PSRemoting -force}"```
-   
-   after logging in as a user with administrative rights.
    
    If enabling remote execution fails, install the newest version of PowerShell
    from Microsoft.
