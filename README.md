@@ -16,6 +16,12 @@ Most packages come from [Chocolatey](https://chocolatey.org)
 
    ```Enable-PSRemoting```
    
+   or using the LANSchool ```Administer > Run Program on Student Machine``` option
+   
+   ```powershell -Command "&{Enable-PSRemoting -force}"```
+   
+   after logging in as a user with administrative rights.
+   
    If enabling remote execution fails, install the newest version of PowerShell
    from Microsoft.
 
