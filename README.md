@@ -12,8 +12,11 @@ Most packages come from [Chocolatey](https://chocolatey.org)
 ## After Reimaging
 
 1. Log in to all of the student machines as a user with administrative rights. With LANSchool this is '''Administer > Log on Selected Students...```
-1. Update PowerShell - this may not be necessary, but one way that you know that you need to update is if you are seeing out of memory and/or stack overflow errors when running the configuration script.
+1. Update PowerShell using the 5.1 package. This has to be initiated on each machine in the lab by hand.
 1. Enable PowerShell script execution if necessary.
+
+```Set-ExecutionPolicy unrestricted```
+
 1. Enable PowerShell remote execution
 
    ```Enable-PSRemoting```
