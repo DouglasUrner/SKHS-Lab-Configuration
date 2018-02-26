@@ -11,16 +11,19 @@ Most packages come from [Chocolatey](https://chocolatey.org)
 
 ## After Reimaging
 
-1. Enable PowerShell script execution
+1. Log in to all of the student machines as a user with administrative rights. With LANSchool this is '''Administer > Log on Selected Students...```
+1. Update PowerShell using the 5.1 package. This has to be initiated on each machine in the lab by hand.
+1. Enable PowerShell script execution if necessary.
+
+```Set-ExecutionPolicy unrestricted```
+
 1. Enable PowerShell remote execution
 
    ```Enable-PSRemoting```
    
-   or using the LANSchool ```Administer > Run Program on Student Machine``` option
+   or using the LANSchool ```Administer > Run Program on Student Machine``` option:
    
    ```powershell -Command "&{Enable-PSRemoting -force}"```
-   
-   after logging in as a user with administrative rights.
    
    If enabling remote execution fails, install the newest version of PowerShell
    from Microsoft.
