@@ -1,7 +1,7 @@
 # SKHS-Lab-Configuration
 
 Scripts to manage CS/Game Development lab configuration
-(Currently running Windows 7).
+(Currently running Windows 10 - scripts and notes prior to December 2018 were run against Windows 7).
 
 Most packages come from [Chocolatey](https://chocolatey.org)
 
